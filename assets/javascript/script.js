@@ -8,7 +8,21 @@ hbgrElement.onclick = () => {
   navigationList.classList.toggle("right-0");
 };
 
-// Click diluar sidebar untuk menghilangkan sidebar kembali {
+// Event Search
+const searchModal = document.querySelector("#search-modal");
+const searchBox = document.querySelector("#search-box");
+const searchButton = document.querySelector("#search-button");
+
+// Ketika Search Button di Click
+searchButton.onclick = () => {
+  searchModal.classList.toggle("scale-x-0");
+  searchModal.classList.toggle("search-x-100");
+  searchBox.focus();
+};
+
+// ================================================================================================
+
+// Click diluar target untuk menghilangkan target kembali {
 document.addEventListener("click", function (clickIn) {
   // Jika yang di Click bukan Hamburger Menu dan Sidebar Menu {
   if (
@@ -19,9 +33,18 @@ document.addEventListener("click", function (clickIn) {
     navigationList.classList.add("-right-full");
   }
   // Ketika Sidebar aktif dan diresize hingga mencapai medium screen {
-  else if (window.innerWidth >= 768) {
+  if (window.innerWidth >= 768) {
     navigationList.classList.remove("right-0");
     navigationList.classList.add("-right-full");
+  }
+
+  // ===================================================================
+  if (
+    !searchButton.contains(clickIn.target) &&
+    !searchModal.contains(clickIn.target)
+  ) {
+    searchModal.classList.remove("scale-x-100");
+    searchModal.classList.add("scale-x-0");
   }
 });
 
@@ -29,6 +52,8 @@ document.addEventListener("resize", function () {
   if (window.innerWidth <= 768) {
     navigationList.classList.remove("right-0");
     navigationList.classList.add("-right-full");
+    searchModal.classList.remove("scale-x-100");
+    searchModal.classList.add("scale-x-0");
   }
 });
 
@@ -42,6 +67,9 @@ window.onscroll = function () {
   var stickySetOffset = stickySetParent.offsetTop;
   var underLargeWidth = window.innerWidth < 1024;
   var x = listMenu.getBoundingClientRect();
+
+  searchModal.classList.remove("scale-x-100");
+  searchModal.classList.add("scale-x-0");
 
   if (x.bottom >= window.innerHeight) {
     if (window.pageYOffset > stickySetOffset && underLargeWidth) {
