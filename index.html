@@ -47,7 +47,7 @@
           </svg>
         </button>
 
-        <a href="#" id="shoping-cart" class="icon-nav">
+        <button id="shopping-cart-button" class="icon-nav">
           <svg
             width="24"
             height="24"
@@ -70,7 +70,7 @@
               fill="currentColor"
             />
           </svg>
-        </a>
+        </button>
 
         <button id="hamburger-menu" class="icon-nav inline-block md:hidden">
           <svg
@@ -99,7 +99,7 @@
       <!-- Search Form Here -->
       <div
         id="search-modal"
-        class="absolute right-0 mx-4 flex h-14 origin-right scale-x-0 items-center rounded-2xl bg-primary-100 drop-shadow-2xl duration-500 sm:w-1/2"
+        class="absolute right-0 mx-4 flex h-14 origin-right scale-x-0 items-center rounded-2xl bg-primary-100 drop-shadow-2xl duration-300 sm:w-1/2"
       >
         <input
           type="search"
@@ -122,6 +122,164 @@
             />
           </svg>
         </label>
+      </div>
+
+      <!-- Shooping Cart Here -->
+      <div
+        id="shopping-cart-modal"
+        class="absolute -right-full top-full h-[100vh] max-w-[20rem] bg-white duration-300"
+      >
+        <div class="flex flex-wrap">
+          <!-- Item 1 -->
+          <div
+            class="relative flex h-fit w-full flex-col items-center gap-4 border-b-2 bg-slate-100 p-3"
+          >
+            <!-- Teks & Image -->
+            <div class="relative flex w-full gap-3">
+              <p class="w-[75%] font-medium">Nasi Goreng Teman Hati</p>
+              <img
+                src="./assets/images/about.jpg"
+                alt="Item 1"
+                class="ml-auto size-16 rounded-lg"
+              />
+            </div>
+
+            <!-- Harga & Quantity -->
+            <div class="flex w-full flex-row items-center">
+              <p class="text-primary-100">Rp. 99.999</p>
+              <!-- Plus Min -->
+              <div class="ml-auto flex items-center gap-3">
+                <!-- Minus -->
+                <button class="size-8 text-primary-100">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="ionicon"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-miterlimit="10"
+                      stroke-width="32"
+                    />
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="32"
+                      d="M336 256H176"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Quantity -->
+                <p class="text-primary-100">3</p>
+
+                <!-- Add -->
+                <button class="size-8 text-primary-100">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="ionicon"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-miterlimit="10"
+                      stroke-width="32"
+                    />
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="32"
+                      d="M256 176v160M336 256H176"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div
+            class="relative flex h-fit w-full flex-col items-center gap-4 border-b-2 bg-slate-100 p-3"
+          >
+            <!-- Teks & Image -->
+            <div class="relative flex w-full gap-3">
+              <p class="w-[75%] font-medium">Nasi Goreng Teman Hati</p>
+              <img
+                src="./assets/images/about.jpg"
+                alt="Item 1"
+                class="ml-auto size-16 rounded-lg"
+              />
+            </div>
+
+            <!-- Harga & Quantity -->
+            <div class="flex w-full flex-row items-center">
+              <p class="text-primary-100">Rp. 99.999</p>
+              <!-- Plus Min -->
+              <div class="ml-auto flex items-center gap-3">
+                <!-- Minus -->
+                <button class="size-8 text-primary-100">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="ionicon"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-miterlimit="10"
+                      stroke-width="32"
+                    />
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="32"
+                      d="M336 256H176"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Quantity -->
+                <p class="text-primary-100">3</p>
+
+                <!-- Add -->
+                <button class="size-8 text-primary-100">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="ionicon"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-miterlimit="10"
+                      stroke-width="32"
+                    />
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="32"
+                      d="M256 176v160M336 256H176"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
     <!-- End Components: Navbar -->

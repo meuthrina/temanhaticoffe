@@ -20,6 +20,15 @@ searchButton.onclick = () => {
   searchBox.focus();
 };
 
+// Event Shopping Cart
+const cartModal = document.querySelector("#shopping-cart-modal");
+const cartButton = document.querySelector("#shopping-cart-button");
+
+cartButton.onclick = () => {
+  cartModal.classList.toggle("-right-full");
+  cartModal.classList.toggle("right-0");
+};
+
 // ================================================================================================
 
 // Click diluar target untuk menghilangkan target kembali {
@@ -39,12 +48,26 @@ document.addEventListener("click", function (clickIn) {
   }
 
   // ===================================================================
+
+  // Search Button
   if (
     !searchButton.contains(clickIn.target) &&
     !searchModal.contains(clickIn.target)
   ) {
     searchModal.classList.remove("scale-x-100");
     searchModal.classList.add("scale-x-0");
+  }
+
+  // ===================================================================
+
+  // Shopping Cart
+
+  if (
+    !cartButton.contains(clickIn.target) &&
+    !cartModal.contains(clickIn.target)
+  ) {
+    cartModal.classList.remove("right-0");
+    cartModal.classList.add("-right-full");
   }
 });
 
@@ -54,6 +77,8 @@ document.addEventListener("resize", function () {
     navigationList.classList.add("-right-full");
     searchModal.classList.remove("scale-x-100");
     searchModal.classList.add("scale-x-0");
+    cartModal.classList.remove("right-0");
+    cartModal.classList.add("-right-full");
   }
 });
 
