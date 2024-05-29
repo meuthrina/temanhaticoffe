@@ -1239,6 +1239,14 @@ video {
   background-image: url('./assets/images/wave.png');
 }
 
+.bg-\[url\(\'assets\/images\/wave\.png\'\)\]{
+  background-image: url('assets/images/wave.png');
+}
+
+.bg-\[url\(\'\/assets\/images\/wave\.png\'\)\]{
+  background-image: url('/assets/images/wave.png');
+}
+
 .bg-\[length\:1000px_100px\]{
   background-size: 1000px 100px;
 }
