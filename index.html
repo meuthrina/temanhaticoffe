@@ -4,11 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teman Hati Coffe</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="./assets/styles/style.css" />
+
+    <!-- Alpine JS -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- Call Alpine -->
+    <script src="./assets/javascript/alpine.js"></script>
   </head>
   <body class="overflow-x-hidden bg-white font-primary">
     <!-- Start Components: Navbar -->
     <nav
+      x-data
       class="fixed left-0 right-0 top-0 z-[9999] flex items-center justify-between bg-white p-6 shadow-sm md:py-4 lg:px-10"
     >
       <!-- Logo Here -->
@@ -47,7 +59,7 @@
           </svg>
         </button>
 
-        <button id="shopping-cart-button" class="icon-nav">
+        <button id="shopping-cart-button" class="icon-nav relative">
           <svg
             width="24"
             height="24"
@@ -70,6 +82,11 @@
               fill="currentColor"
             />
           </svg>
+          <span
+            x-text="$store.cart.totalQuantity"
+            x-show="$store.cart.totalQuantity"
+            class="absolute right-0 top-0 inline-block rounded-full bg-red-500 px-1 text-xs text-white"
+          ></span>
         </button>
 
         <button id="hamburger-menu" class="icon-nav inline-block md:hidden">
@@ -127,30 +144,36 @@
       <!-- Shooping Cart Here -->
       <div
         id="shopping-cart-modal"
-        class="absolute -right-full top-full h-[100vh] max-w-[20rem] bg-white duration-300"
+        class="absolute -right-full top-full h-[100vh] w-[20rem] bg-white duration-300"
       >
-        <div class="flex flex-wrap">
-          <!-- Item 1 -->
+        <!-- Item -->
+        <template x-for="(item, index) in $store.cart.itemInCart" x-key="index">
           <div
             class="relative flex h-fit w-full flex-col items-center gap-4 border-b-2 bg-slate-100 p-3"
           >
             <!-- Teks & Image -->
             <div class="relative flex w-full gap-3">
-              <p class="w-[75%] font-medium">Nasi Goreng Teman Hati</p>
+              <p x-text="item.name" class="w-[75%] font-medium"></p>
               <img
-                src="./assets/images/about.jpg"
-                alt="Item 1"
+                :src="`./assets/images/menu/${item.img}`"
+                :alt="item.name"
                 class="ml-auto size-16 rounded-lg"
               />
             </div>
 
             <!-- Harga & Quantity -->
             <div class="flex w-full flex-row items-center">
-              <p class="text-primary-100">Rp. 99.999</p>
+              <p
+                x-text="toRupiah(item.totalItemPrice)"
+                class="text-primary-100"
+              ></p>
               <!-- Plus Min -->
               <div class="ml-auto flex items-center gap-3">
                 <!-- Minus -->
-                <button class="size-8 text-primary-100">
+                <button
+                  @click="$store.cart.removeItem(item.id)"
+                  class="size-8 text-primary-100"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="ionicon"
@@ -175,10 +198,13 @@
                 </button>
 
                 <!-- Quantity -->
-                <p class="text-primary-100">3</p>
+                <p x-text="item.quantity" class="text-primary-100"></p>
 
                 <!-- Add -->
-                <button class="size-8 text-primary-100">
+                <button
+                  @click="$store.cart.addItem(item)"
+                  class="size-8 text-primary-100"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="ionicon"
@@ -204,82 +230,11 @@
               </div>
             </div>
           </div>
-
-          <!-- Item 2 -->
-          <div
-            class="relative flex h-fit w-full flex-col items-center gap-4 border-b-2 bg-slate-100 p-3"
-          >
-            <!-- Teks & Image -->
-            <div class="relative flex w-full gap-3">
-              <p class="w-[75%] font-medium">Nasi Goreng Teman Hati</p>
-              <img
-                src="./assets/images/about.jpg"
-                alt="Item 1"
-                class="ml-auto size-16 rounded-lg"
-              />
-            </div>
-
-            <!-- Harga & Quantity -->
-            <div class="flex w-full flex-row items-center">
-              <p class="text-primary-100">Rp. 99.999</p>
-              <!-- Plus Min -->
-              <div class="ml-auto flex items-center gap-3">
-                <!-- Minus -->
-                <button class="size-8 text-primary-100">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="ionicon"
-                    viewBox="0 0 512 512"
-                  >
-                    <path
-                      d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-miterlimit="10"
-                      stroke-width="32"
-                    />
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="32"
-                      d="M336 256H176"
-                    />
-                  </svg>
-                </button>
-
-                <!-- Quantity -->
-                <p class="text-primary-100">3</p>
-
-                <!-- Add -->
-                <button class="size-8 text-primary-100">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="ionicon"
-                    viewBox="0 0 512 512"
-                  >
-                    <path
-                      d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-miterlimit="10"
-                      stroke-width="32"
-                    />
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="32"
-                      d="M256 176v160M336 256H176"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        </template>
+        <p x-show="!$store.cart.itemInCart.length">Keranjang Kosong :(</p>
+        <p x-show="$store.cart.itemInCart.length">
+          Total: <span x-text="toRupiah($store.cart.totalPrice)"></span>
+        </p>
       </div>
     </nav>
     <!-- End Components: Navbar -->
@@ -760,6 +715,7 @@
         <!-- Container: List Menu -->
         <div
           id="listMenu"
+          x-data="menuItems"
           class="w-full px-6 pb-60 pt-60 lg:ml-auto lg:max-w-[70%]"
         >
           <!-- Best Seller Menu -->
@@ -772,336 +728,64 @@
             <!-- Daftar Menu -->
             <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
               <!-- Menu 1 -->
-              <div
-                class="mx-auto w-full max-w-[23rem] rounded-xl bg-white drop-shadow-lg duration-300 hover:ring-2 hover:ring-primary-100"
-              >
-                <!-- Pembagi Deskripsi dan CTA -->
-                <div class="flex size-full flex-col gap-3 p-3">
-                  <!-- Pembagi Text dan Gambar -->
-                  <div class="flex w-full gap-3">
-                    <!-- Bagian Teks -->
-                    <div class="flex w-[60%] flex-col gap-4">
-                      <h1
-                        class="font-primary font-semibold text-primary-100 sm:text-lg"
-                      >
-                        Beef Steak Original
-                      </h1>
-                      <p
-                        class="font-primary text-[0.8rem] font-light italic text-secondary-100 md:text-sm"
-                      >
-                        Pilihan Saos: Original / Blackpaper / Barbeque
-                      </p>
+              <template x-for="(item, index) in bestSeller" x-keys="index">
+                <div
+                  class="mx-auto w-full max-w-[23rem] rounded-xl bg-white drop-shadow-lg duration-300 hover:ring-2 hover:ring-primary-100"
+                >
+                  <!-- Pembagi Deskripsi dan CTA -->
+                  <div class="flex size-full flex-col gap-3 p-3">
+                    <!-- Pembagi Text dan Gambar -->
+                    <div class="flex w-full gap-3">
+                      <!-- Bagian Teks -->
+                      <div class="flex w-[60%] flex-col gap-4">
+                        <h1
+                          class="font-primary font-semibold text-primary-100 sm:text-lg"
+                          x-text="item.name"
+                        ></h1>
+                        <p
+                          x-text="item.desk"
+                          class="font-primary text-[0.8rem] font-light italic text-secondary-100 md:text-sm"
+                        ></p>
+                      </div>
+
+                      <!-- Bagian Gambar -->
+                      <div class="w-[35%]">
+                        <img
+                          :src="`./assets/images/menu/${item.img}`"
+                          :alt="`item.name`"
+                          class="rounded-lg"
+                        />
+                      </div>
                     </div>
 
-                    <!-- Bagian Gambar -->
-                    <div class="w-[35%]">
-                      <img
-                        src="./assets/images/about.jpg"
-                        alt=""
-                        class="rounded-lg"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Pembagi Harga & CTA -->
-                  <div class="mt-auto flex justify-between">
-                    <!-- Bagian Harga -->
-                    <p
-                      class="mt-auto text-sm font-medium text-primary-100 sm:text-base"
-                    >
-                      Rp.
-                      <span class="text-base sm:text-lg">32.000</span>
-                    </p>
-
-                    <!-- Bagian Cart -->
-                    <a
-                      href="#"
-                      class="group flex items-center gap-1 rounded-full px-6 py-2 ring-1 ring-primary-100 duration-500 hover:bg-primary-100"
-                    >
+                    <!-- Pembagi Harga & CTA -->
+                    <div class="mt-auto flex justify-between">
+                      <!-- Bagian Harga -->
                       <p
-                        class="text-sm font-medium text-primary-100 group-hover:text-white sm:text-base"
+                        class="mt-auto text-sm font-medium text-primary-100 sm:text-base"
                       >
-                        Tambah
+                        <span
+                          class="text-base sm:text-lg"
+                          x-text="toRupiah(item.price)"
+                        ></span>
                       </p>
-                    </a>
+
+                      <!-- Bagian Cart -->
+                      <a
+                        href="#"
+                        @click.prevent="$store.cart.addItem(item)"
+                        class="group flex items-center gap-1 rounded-full px-6 py-2 ring-1 ring-primary-100 duration-500 hover:bg-primary-100"
+                      >
+                        <p
+                          class="text-sm font-medium text-primary-100 group-hover:text-white sm:text-base"
+                        >
+                          Tambah
+                        </p>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <!-- Menu 2 -->
-              <div
-                class="mx-auto w-full max-w-[23rem] rounded-xl bg-white drop-shadow-lg duration-300 hover:ring-2 hover:ring-primary-100"
-              >
-                <!-- Pembagi Deskripsi dan CTA -->
-                <div class="flex size-full flex-col gap-3 p-3">
-                  <!-- Pembagi Text dan Gambar -->
-                  <div class="flex w-full gap-3">
-                    <!-- Bagian Teks -->
-                    <div class="flex w-[60%] flex-col gap-4">
-                      <h1 class="font-primary font-semibold sm:text-lg">
-                        Udang Saus Pedas
-                      </h1>
-                      <p
-                        class="font-primary text-[0.8rem] font-light italic text-secondary-100 md:text-sm"
-                      >
-                        Tidak ada Deskripsi
-                      </p>
-                    </div>
-
-                    <!-- Bagian Gambar -->
-                    <div class="w-[35%]">
-                      <img
-                        src="./assets/images/about.jpg"
-                        alt=""
-                        class="rounded-lg"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Pembagi Harga & CTA -->
-                  <div class="mt-auto flex justify-between">
-                    <!-- Bagian Harga -->
-                    <p
-                      class="mt-auto text-sm font-medium text-primary-100 sm:text-base"
-                    >
-                      Rp.
-                      <span class="text-base sm:text-lg">30.000</span>
-                    </p>
-
-                    <!-- Bagian Cart -->
-                    <a
-                      href="#"
-                      class="group flex items-center gap-1 rounded-full px-6 py-2 ring-1 ring-primary-100 duration-500 hover:bg-primary-100"
-                    >
-                      <p
-                        class="text-sm font-medium text-primary-100 group-hover:text-white sm:text-base"
-                      >
-                        Tambah
-                      </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Menu 3 -->
-              <div
-                class="mx-auto w-full max-w-[23rem] rounded-xl bg-white drop-shadow-lg duration-300 hover:ring-2 hover:ring-primary-100"
-              >
-                <!-- Pembagi Deskripsi dan CTA -->
-                <div class="flex size-full flex-col gap-3 p-3">
-                  <!-- Pembagi Text dan Gambar -->
-                  <div class="flex w-full gap-3">
-                    <!-- Bagian Teks -->
-                    <div class="flex w-[60%] flex-col gap-4">
-                      <h1 class="font-primary font-semibold sm:text-lg">
-                        Ayam Saus Pedas
-                      </h1>
-                      <p
-                        class="font-primary text-[0.8rem] font-light italic text-secondary-100 md:text-sm"
-                      >
-                        Pilihan Saos: Pedas / Tiram / Mentega (Porsi 2-3 orang)
-                      </p>
-                    </div>
-
-                    <!-- Bagian Gambar -->
-                    <div class="w-[35%]">
-                      <img
-                        src="./assets/images/about.jpg"
-                        alt=""
-                        class="rounded-lg"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Pembagi Harga & CTA -->
-                  <div class="mt-auto flex justify-between">
-                    <!-- Bagian Harga -->
-                    <p
-                      class="mt-auto text-sm font-medium text-primary-100 sm:text-base"
-                    >
-                      Rp.
-                      <span class="text-base sm:text-lg">25.000</span>
-                    </p>
-
-                    <!-- Bagian Cart -->
-                    <a
-                      href="#"
-                      class="group flex items-center gap-1 rounded-full px-6 py-2 ring-1 ring-primary-100 duration-500 hover:bg-primary-100"
-                    >
-                      <p
-                        class="text-sm font-medium text-primary-100 group-hover:text-white sm:text-base"
-                      >
-                        Tambah
-                      </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Menu 4 -->
-              <div
-                class="mx-auto w-full max-w-[23rem] rounded-xl bg-white drop-shadow-lg duration-300 hover:ring-2 hover:ring-primary-100"
-              >
-                <!-- Pembagi Deskripsi dan CTA -->
-                <div class="flex size-full flex-col gap-3 p-3">
-                  <!-- Pembagi Text dan Gambar -->
-                  <div class="flex w-full gap-3">
-                    <!-- Bagian Teks -->
-                    <div class="flex w-[60%] flex-col gap-4">
-                      <h1 class="font-primary font-semibold sm:text-lg">
-                        Bakmie Goreng Seafood
-                      </h1>
-                      <p
-                        class="font-primary text-[0.8rem] font-light italic text-secondary-100 md:text-sm"
-                      >
-                        Tidak ada Deskripsi
-                      </p>
-                    </div>
-
-                    <!-- Bagian Gambar -->
-                    <div class="w-[35%]">
-                      <img
-                        src="./assets/images/about.jpg"
-                        alt=""
-                        class="rounded-lg"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Pembagi Harga & CTA -->
-                  <div class="mt-auto flex justify-between">
-                    <!-- Bagian Harga -->
-                    <p
-                      class="mt-auto text-sm font-medium text-primary-100 sm:text-base"
-                    >
-                      Rp.
-                      <span class="text-base sm:text-lg">20.000</span>
-                    </p>
-
-                    <!-- Bagian Cart -->
-                    <a
-                      href="#"
-                      class="group flex items-center gap-1 rounded-full px-6 py-2 ring-1 ring-primary-100 duration-500 hover:bg-primary-100"
-                    >
-                      <p
-                        class="text-sm font-medium text-primary-100 group-hover:text-white sm:text-base"
-                      >
-                        Tambah
-                      </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Menu 5 -->
-              <div
-                class="mx-auto w-full max-w-[23rem] rounded-xl bg-white drop-shadow-lg duration-300 hover:ring-2 hover:ring-primary-100"
-              >
-                <!-- Pembagi Deskripsi dan CTA -->
-                <div class="flex size-full flex-col gap-3 p-3">
-                  <!-- Pembagi Text dan Gambar -->
-                  <div class="flex w-full gap-3">
-                    <!-- Bagian Teks -->
-                    <div class="flex w-[60%] flex-col gap-4">
-                      <h1 class="font-primary font-semibold sm:text-lg">
-                        Capcay Goreng Seafood
-                      </h1>
-                      <p
-                        class="font-primary text-[0.8rem] font-light italic text-secondary-100 md:text-sm"
-                      >
-                        Tidak ada Deskripsi
-                      </p>
-                    </div>
-
-                    <!-- Bagian Gambar -->
-                    <div class="w-[35%]">
-                      <img
-                        src="./assets/images/about.jpg"
-                        alt=""
-                        class="rounded-lg"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Pembagi Harga & Cart -->
-                  <div class="mt-auto flex justify-between">
-                    <!-- Bagian Harga -->
-                    <p
-                      class="mt-auto text-sm font-medium text-primary-100 sm:text-base"
-                    >
-                      Rp.
-                      <span class="text-base sm:text-lg">20.000</span>
-                    </p>
-
-                    <!-- Bagian Cart -->
-                    <a
-                      href="#"
-                      class="group flex items-center gap-1 rounded-full px-6 py-2 ring-1 ring-primary-100 duration-500 hover:bg-primary-100"
-                    >
-                      <p
-                        class="text-sm font-medium text-primary-100 group-hover:text-white sm:text-base"
-                      >
-                        Tambah
-                      </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Menu 6 -->
-              <div
-                class="mx-auto w-full max-w-[23rem] rounded-xl bg-white drop-shadow-lg duration-300 hover:ring-2 hover:ring-primary-100"
-              >
-                <!-- Pembagi Deskripsi dan CTA -->
-                <div class="flex size-full flex-col gap-3 p-3">
-                  <!-- Pembagi Text dan Gambar -->
-                  <div class="flex w-full gap-3">
-                    <!-- Bagian Teks -->
-                    <div class="flex w-[60%] flex-col gap-4">
-                      <h1 class="font-primary font-semibold sm:text-lg">
-                        Sop Iga Teman Hati
-                      </h1>
-                      <p
-                        class="font-primary text-[0.8rem] font-light italic text-secondary-100 md:text-sm"
-                      >
-                        Include Nasi
-                      </p>
-                    </div>
-
-                    <!-- Bagian Gambar -->
-                    <div class="w-[35%]">
-                      <img
-                        src="./assets/images/about.jpg"
-                        alt=""
-                        class="rounded-lg"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Pembagi Harga & Cart -->
-                  <div class="mt-auto flex justify-between">
-                    <!-- Bagian Harga -->
-                    <p
-                      class="mt-auto text-sm font-medium text-primary-100 sm:text-base"
-                    >
-                      Rp.
-                      <span class="text-base sm:text-lg">35.000</span>
-                    </p>
-
-                    <!-- Bagian Cart -->
-                    <a
-                      href="#"
-                      class="group flex items-center gap-1 rounded-full px-6 py-2 ring-1 ring-primary-100 duration-500 hover:bg-primary-100"
-                    >
-                      <p
-                        class="text-sm font-medium text-primary-100 group-hover:text-white sm:text-base"
-                      >
-                        Tambah
-                      </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
+              </template>
             </div>
           </div>
 
