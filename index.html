@@ -21,7 +21,7 @@
     <!-- Start Components: Navbar -->
     <nav
       x-data
-      class="fixed left-0 right-0 top-0 z-[9999] flex items-center justify-between bg-white p-6 shadow-sm md:py-4 lg:px-10"
+      class="fixed left-0 right-0 top-0 z-[999999999999999999] flex items-center justify-between bg-white p-6 shadow-sm md:py-4 lg:px-10"
     >
       <!-- Logo Here -->
       <a href="#home-section" class="flex h-10 justify-center">
@@ -85,7 +85,7 @@
           <span
             x-text="$store.cart.totalQuantity"
             x-show="$store.cart.totalQuantity"
-            class="absolute right-0 top-0 inline-block rounded-full bg-red-500 px-1 text-xs text-white"
+            class="absolute right-0 top-0 inline-block rounded-full bg-primary-200 px-1 text-xs text-white"
           ></span>
         </button>
 
@@ -144,7 +144,7 @@
       <!-- Shooping Cart Here -->
       <div
         id="shopping-cart-modal"
-        class="absolute -right-full top-full h-[100vh] w-[20rem] bg-white duration-300"
+        class="absolute -right-full top-full h-screen max-h-screen w-[20rem] overflow-y-auto bg-white pb-96 duration-300"
       >
         <!-- Item -->
         <template x-for="(item, index) in $store.cart.itemInCart" x-key="index">
@@ -231,8 +231,16 @@
             </div>
           </div>
         </template>
-        <p x-show="!$store.cart.itemInCart.length">Keranjang Kosong :(</p>
-        <p x-show="$store.cart.itemInCart.length">
+        <p
+          x-show="!$store.cart.itemInCart.length"
+          class="pt-[35vh] text-center text-lg font-semibold text-primary-100"
+        >
+          Keranjang Kosong :(
+        </p>
+        <p
+          x-show="$store.cart.itemInCart.length"
+          class="mx-auto mt-4 w-3/4 rounded-full border-2 border-dashed border-primary-100 py-2 text-center text-lg font-semibold text-primary-100"
+        >
           Total: <span x-text="toRupiah($store.cart.totalPrice)"></span>
         </p>
       </div>
