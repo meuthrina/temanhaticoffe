@@ -16,11 +16,16 @@
 
     <!-- Call Alpine -->
     <script src="./assets/javascript/alpine.js"></script>
+
+    <!-- Animate On Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body class="overflow-x-hidden bg-white font-primary">
     <!-- Start Components: Navbar -->
     <nav
       x-data
+      data-aos="fade-down"
+      data-aos-duration="1000"
       class="fixed left-0 right-0 top-0 z-[999999999999999999] flex items-center justify-between bg-white p-6 shadow-sm md:py-4 lg:px-10"
     >
       <!-- Logo Here -->
@@ -259,18 +264,28 @@
         >
           <!-- Judul -->
           <h1
+            data-aos="fade-right"
+            data-aos-duration="1000"
             class="text-4xl font-bold text-primary-100 drop-shadow-md sm:text-5xl"
           >
             Temani Hati,
           </h1>
           <h1
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="200"
             class="text-4xl font-bold text-primary-100 drop-shadow-md sm:text-5xl"
           >
             Agar Kau Tak Sendiri
           </h1>
 
           <!-- Paragraf -->
-          <p class="mt-4 text-lg font-medium drop-shadow-2xl md:max-w-[90%]">
+          <p
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+            class="mt-4 text-lg font-medium drop-shadow-2xl md:max-w-[90%]"
+          >
             Sahabat setia menemani momenmu dengan secangkir kopi hangat dan
             hidangan lezat, menghangatkan hati dan mengisi hari-harimu dengan
             kebahagiaan.
@@ -278,6 +293,9 @@
 
           <!-- Button Menu -->
           <a
+            data-aos="fade"
+            data-aos-duration="1000"
+            data-aos-delay="600"
             href="#menu-section"
             class="mt-4 inline-flex h-12 max-w-[20rem] items-center justify-center rounded-full bg-primary-100 px-5 text-lg font-medium text-white duration-500 hover:bg-primary-200 hover:text-primary-100 md:max-w-fit md:px-16"
           >
@@ -287,6 +305,9 @@
 
         <!-- Gambar -->
         <div
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          data-aos-delay="200"
           class="relative flex size-full items-center justify-center p-[15%] md:w-1/2 md:p-[8%]"
         >
           <img
@@ -323,6 +344,8 @@
     <!-- Start Components: About Section -->
     <section id="about-section" class="mt-24 px-6 pb-16 pt-36 md:mt-0 lg:px-8">
       <h1
+        data-aos="fade-up"
+        data-aos-duration="1000"
         class="mx-auto mb-12 text-center text-3xl font-bold text-primary-100 sm:text-5xl"
       >
         Cerita Kami
@@ -331,6 +354,9 @@
       <!-- Bagian Gambar -->
       <div class="flex flex-col gap-6 sm:flex-row">
         <div
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="200"
           class="relative flex-1 after:absolute after:left-0 after:top-0 after:block after:h-full after:w-[50%] after:bg-gradient-to-r after:from-white after:to-transparent"
         >
           <img
@@ -341,7 +367,12 @@
         </div>
 
         <!-- Bagian Deskripsi -->
-        <div class="flex-1 shrink-[35rem] sm:text-sm lg:text-lg">
+        <div
+          data-aos="fade"
+          data-aos-duration="1000"
+          data-aos-delay="400"
+          class="flex-1 shrink-[35rem] sm:text-sm lg:text-lg"
+        >
           <p class="mb-4">
             Teman Hati bukan sekadar cafe biasa. Kami hadir untuk menghadirkan
             nuansa baru di dunia cafe, khususnya di Kebumen. Kami ingin
@@ -367,7 +398,9 @@
     <!-- Start Components: Why Us -->
     <section class="px-6">
       <h1
-        class="mx-auto mb-12 max-w-xl rounded-full border-2 border-dotted border-primary-100 px-6 py-3 text-center text-lg font-bold text-primary-100 sm:text-3xl"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        class="mx-auto my-12 max-w-xl rounded-full border-2 border-dotted border-primary-100 px-6 py-3 text-center text-lg font-bold text-primary-100 sm:text-3xl"
       >
         Kenapa memilih kami?
       </h1>
@@ -377,7 +410,12 @@
         class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:px-12"
       >
         <!-- Components 1 -->
-        <div class="w-full">
+        <div
+          data-aos="fade"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+          class="w-full"
+        >
           <div
             class="group mx-auto flex flex-col gap-2 rounded-3xl p-7 hover:shadow-lg"
           >
@@ -429,7 +467,12 @@
         </div>
 
         <!-- Components 2 -->
-        <div class="w-full">
+        <div
+          data-aos="fade"
+          data-aos-duration="1000"
+          data-aos-delay="400"
+          class="w-full"
+        >
           <div
             class="group mx-auto flex flex-col gap-2 rounded-3xl p-7 hover:shadow-lg"
           >
@@ -496,7 +539,12 @@
         </div>
 
         <!-- Components 3 -->
-        <div class="w-full">
+        <div
+          data-aos="fade"
+          data-aos-duration="1000"
+          data-aos-delay="600"
+          class="w-full"
+        >
           <div
             class="group mx-auto flex flex-col gap-2 rounded-3xl p-7 hover:shadow-lg"
           >
@@ -555,7 +603,12 @@
         </div>
 
         <!-- Components 4 -->
-        <div class="w-full">
+        <div
+          data-aos="fade"
+          data-aos-duration="1000"
+          data-aos-delay="800"
+          class="w-full"
+        >
           <div
             class="group mx-auto flex flex-col gap-2 rounded-3xl p-7 hover:shadow-lg"
           >
@@ -611,6 +664,8 @@
       <div class="w-full px-6 pb-12">
         <!-- Judul -->
         <h1
+          data-aos="fade-up"
+          data-aos-duration="1000"
           class="mx-auto mb-7 pt-8 text-center text-3xl font-bold text-primary-100 sm:text-5xl"
         >
           Buku Menu
@@ -618,6 +673,9 @@
 
         <!-- Sub Judul -->
         <div
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="200"
           class="mx-auto max-w-[25rem] rounded-full border-[1px] border-dashed border-secondary-100 px-7 py-4 sm:max-w-[35rem]"
         >
           <h1
@@ -633,7 +691,12 @@
         <!-- Kategori Selection -->
         <div class="lg:w-[30%]">
           <!-- Container -->
-          <div class="relative w-full">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+            class="relative w-full"
+          >
             <div
               id="stickySet"
               class="left-0 right-0 top-[80px] z-30 lg:bottom-0 lg:right-2/3 lg:top-[120px] lg:tracking-widest"
@@ -722,6 +785,9 @@
 
         <!-- Container: List Menu -->
         <div
+          data-aos="fade"
+          data-aos-duration="1000"
+          data-aos-delay="400"
           id="listMenu"
           x-data="menuItems"
           class="w-full px-6 pb-60 pt-60 lg:ml-auto lg:max-w-[70%]"
@@ -1148,6 +1214,8 @@
       <div class="w-full px-6 pb-12">
         <!-- Judul -->
         <h1
+          data-aos="fade-up"
+          data-aos-duration="1000"
           class="mx-auto mb-7 pt-8 text-center text-3xl font-bold text-primary-100 sm:text-5xl"
         >
           Testimoni
@@ -1155,6 +1223,9 @@
 
         <!-- Sub Judul -->
         <div
+          data-aos="fade"
+          data-aos-duration="1000"
+          data-aos-delay="400"
           class="mx-auto max-w-[25rem] rounded-full border-[1px] border-dashed border-secondary-100 px-7 py-4 sm:max-w-[35rem]"
         >
           <h1
@@ -1167,6 +1238,9 @@
 
       <!-- Container Slider -->
       <div
+        data-aos="fade"
+        data-aos-duration="1000"
+        data-aos-delay="600"
         class="group relative overflow-hidden whitespace-nowrap bg-slate-100 py-14 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-[25%] before:bg-gradient-to-r before:from-white before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[25%] after:bg-gradient-to-l after:from-white after:to-transparent"
       >
         <!-- Slider 1 -->
@@ -1678,6 +1752,8 @@
       <div class="w-full px-6">
         <!-- Judul -->
         <h1
+          data-aos="fade-up"
+          data-aos-duration="1000"
           class="mx-auto mb-7 pt-8 text-center text-3xl font-bold text-primary-100 sm:text-5xl"
         >
           Hubungi Kami
@@ -1685,6 +1761,9 @@
 
         <!-- Sub Judul -->
         <div
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="200"
           class="mx-auto max-w-[25rem] rounded-full border-[1px] border-dashed border-secondary-100 px-7 py-4 sm:max-w-[35rem]"
         >
           <h1
@@ -1696,7 +1775,12 @@
       </div>
 
       <!-- Container -->
-      <div class="w-full p-6">
+      <div
+        data-aos="fade"
+        data-aos-duration="1000"
+        data-aos-delay="400"
+        class="w-full p-6"
+      >
         <!-- Pembagi Send dan Informasi -->
         <div class="flex flex-col gap-6 lg:mt-10 lg:flex-row">
           <!-- Bagian Informasi -->
@@ -2039,5 +2123,11 @@
 
     <!-- JavaScript -->
     <script src="./assets/javascript/script.js"></script>
+
+    <!-- Animate On Scroll -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
